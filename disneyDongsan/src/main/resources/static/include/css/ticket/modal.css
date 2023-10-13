@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+#ticketCancelBtn{
+	/*background-color: #3c3c8c;*/
+	border: #3c3c8c;
+	color: #3c3c8c;
+	width: 45px;
+	height: 30px;
+	border-radius: 10px;
+}
+
+#ticketInsertBtn{
+	background-color: #3c3c8c;
+	color: white;
+	width: 85px;
+	height: 30px;
+	border-radius: 10px;
+}

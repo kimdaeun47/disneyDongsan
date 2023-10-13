@@ -1,0 +1,88 @@
+@charset "UTF-8";
+.container{
+	width: 100%;
+}
+
+.card{
+	flex-direction: row;
+	 border-radius: 10px!important;
+	 
+}
+.allDiv{
+	width: 100%;   
+}
+
+.checkline{
+	border-bottom: 1px solid rgb(131, 150, 207);
+}
+.all-button{
+	margin-left: 90%;
+	margin-right: 10%;
+}
+.card:hover{
+	flex-direction: row;
+	 border-radius: 10px!important;
+	 border:3px solid #3C3C8C;
+	 box-shadow: none;
+}
+
+
+.card-body:hover{
+	border-top-left-radius : 10px!important;
+	border-bottom-left-radius : 10px!important;
+	color: black;
+	background-color: white;
+	box-shadow: none;
+	
+}
+
+.RowCheck_div{
+	width: 100px;
+	margin:25px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	
+}
+
+.deleteFormBtn{
+	 border-radius: 5px;
+     background-color: #3C3C8C;
+     margin-top: 30px;
+     color:white;
+     font-size: 16px!important;
+     font-weight: bold;
+     width: 150px;
+     float: right;
+}
+
+.goDetail{
+	color: #3C3C8C;
+	cursor: pointer;
+}
+
+.ticketSide{
+	float: right;
+	width: 20%;
+	height: 20%;
+	background-color: #3C3C8C;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	padding: 100px 0 100px 0;
+	text-align: center;
+	color: white;
+}
+
+.ticketCard{
+	height: 0% !important;
+}
+
+.table:hover{
+	background-color: #3C3C8C;
+}
+
+
+.deleteline{
+	border-top: 1px solid rgb(131, 150, 207);
+	color: #3C3C8C;
+}

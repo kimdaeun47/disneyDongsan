@@ -1,0 +1,51 @@
+@charset "UTF-8";
+.file {
+	width: 100px;
+	}
+				  
+.custom-btn {
+	width: 150px;
+	height: 40px;
+	padding: 5px 0 5px 0;
+	border: 2px solid #3C3C8C;
+	border-radius: 10px;
+	font-family: 'Lato', sans-serif;
+	font-weight: 500;
+	background: transparent;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	display: inline-block;
+	background-color: #3C3C8C;
+	color:white;
+	font-weight: bold;
+	}
+.btn-15 {
+	background: white;
+	color: #3C3C8C;
+	z-index: 1;
+	border-radius: 10px;
+	}
+.btn-15:after {
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 100%;
+	top: 0;
+	right: 0;
+	z-index: -1;
+	background:#3C3C8C;
+	transition: all 0.5s ease;
+	border-radius: 6px;
+	color:#3C3C8C;
+	}
+.btn-15:hover {
+	color: white;
+	}
+.btn-15:hover:after {
+	left: 0;
+	width: 100%;
+	}
+.btn-15:active {
+	top: 2px;
+	}

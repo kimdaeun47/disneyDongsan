@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disney.client.dao.OrderDAO">
+
+	<!-- 주문 상품 정보 -->
+	<select id="getGoodsInfo" resultType="orderDetail">
+		
+		select g_id, g_name, g_price, g_image
+		from goods where g_id = #{g_id}
+		
+	</select>
+	
+	<select id="getOrderInfo" resultType="orderDetailPay">
+	
+		select g_id, g_price
+		from goods where g_id = #{g_id}
+	
+	</select>
+	
+	<insert id="enrollOrder">
+	
+		insert into g_order(g_order_id, member_name, member_id, member_addr1, member_addr2, member_addr3, g_order_state, delivery_cost, merchant_uid, imp_uid, paid_amount)
+    	values(#{g_order_id},#{member_name}, #{member_id}, #{member_addr1}, #{member_addr2}, #{member_addr3}, '배송준비', #{delivery_cost}, #{merchant_uid}, #{imp_uid}, #{paid_amount})
+	
+	</insert>
+	
+	<insert id="enrollOrderItem">
+	
+		insert into g_order_detail(g_order_id, g_id, g_count, g_price)
+		values(#{g_order_id}, #{g_id}, #{g_count}, #{g_price})
+	
+	</insert>
+
+
+</mapper>

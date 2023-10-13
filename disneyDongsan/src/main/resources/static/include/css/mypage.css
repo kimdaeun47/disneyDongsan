@@ -1,0 +1,164 @@
+@charset "UTF-8";
+body{
+
+    margin: 0;
+    padding: 0;
+    background-color:#f8f9fa;
+}
+.main_div{
+	margin:0;
+	padding:0;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+	height: 100%;
+	
+}
+.login_div {
+	text-align: right;
+	height: 20%;
+	margin: 15px;
+	border-bottom: 0.5px solid #e1e1e1;
+}
+
+.login_div_a {
+	text-decoration: none;
+	padding-right: 30px;
+	color: #555;
+}
+
+.login_div_a:hover {
+	font-weight: bolder;
+	color: #555;
+}
+
+.logo_background {
+	height: 180px;
+	background: linear-gradient(#050729 10%, #114598);
+	background: linear-gradient(45deg, #050729);
+	text-align: center;
+	margin-bottom:10px;
+	box-shadow: 0px 0px 5px #114598;
+}
+
+#logoImg {
+	height: 200px;
+}
+/*헤더 끝*/
+
+/*사이드바*/
+
+.body_div{
+	display: flex;
+	height: 100%;
+	width: 70%;
+	margin: auto;
+}
+ul {
+	list-style-type: none;
+	padding: 0;
+	width: 20%;
+	background-color: #f1f1f1;
+	background-size: 20%;
+	overflow: auto;
+	border-radius: 10px / 10px;
+	margin:0;
+	
+}
+
+li .item, .active {
+	display: block;
+	color: #000;
+	padding:2px;
+	text-decoration: none;
+	
+	
+}
+
+li .active {
+  background-color: #114598;
+  color: white;
+  text-align:center;
+  margin-bottom: 0.5px;
+}
+
+li .item{
+	line-height:50px;
+	text-align:center;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+/*사이드바 끝*/
+
+/*바디*/
+.content_box{
+	padding: 1px 16px; 
+	box-shadow: 0px 0px 5px #000;
+	border-radius: 10px / 10px;
+	flex: 1;
+	background-color: white;
+}
+
+.pwd_div{
+	margin:50px;
+	text-align: center;
+}
+
+
+.table{
+	margin:25px;
+	text-align: center;
+	border: 1px solid #000;
+	border-collapse: collapse;
+}
+
+th, td{
+	    border: 1px solid #444444;
+    padding: 10px;
+
+}
+/*바디 끝*/
+
+/*풋터*/
+
+footer{
+	box-shadow: 0px 0px 2px #000;
+    width:100%;
+    height:90px;
+    background-color:#f8f9fa;
+    text-align: left;
+    margin-top:10px;
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+}
+
+.footer-location{
+	display:inline-block;
+	margin-left:50px;
+}
+
+.footer-primary{
+    display:inline-block;
+    margin-left:50px;
+}
+
+.footer-company{
+	
+    text-align: center;
+}
+
+.footer-flatform{
+	display:inline-block;
+	margin-right:50px;
+	float:right;
+}
+
+.flatform-item{
+	display:inline-block;
+	float:right;
+	margin-right:40px;
+}

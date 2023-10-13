@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+.form-control{
+	border:none;
+	border-radius: 0;
+	border-bottom: 1px solid #3C3C8C;
+}
+
+.form-control:focus {
+	box-shadow: none;;
+	outline: 1px #3C3C8C;
+}
+
+.qa_ask{
+	
+	margin: 0 0 8% 0;
+}
+
+.h3{
+	font-size: 30px;
+	font-weight: 600;
+	color:#3C3C8C;
+}
+
+.qaInsertBtn{
+	width: 10%;
+	padding: 4px;
+	color:white;
+	background-color: #3C3C8C;
+	border: #3C3C8C;
+	border-radius: 3px;
+}
+
+.qaInsertBtn:hover{
+	width: 10.1%;
+	padding: 4px;
+	color:#3C3C8C;
+	background-color: white;
+	border: 2px solid #3C3C8C;
+	border-radius: 3px;
+}
+
+.qaListBtn{
+	width: 10%;
+	padding: 4px;
+	color:white;
+	background-color: #3C3C8C;
+	border: #3C3C8C;
+	border-radius: 3px;
+}
+
+.qaListBtn:hover{
+	width: 10.1%;
+	padding: 4px;
+	color:#3C3C8C;
+	background-color: white;
+	border: 2px solid #3C3C8C;
+	border-radius: 3px;
+}
+
+.miki{
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+}

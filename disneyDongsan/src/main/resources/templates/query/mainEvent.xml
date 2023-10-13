@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disney.admin.dao.AdminMainDao">
+	<select id="mainList" resultType="main">
+		SELECT
+		main_event_no, main_event_title, main_event_image
+		FROM MainEvent
+		ORDER BY main_event_no asc
+	</select>
+	
+	<select id="mainUpdateForm" resultType="main">
+		SELECT
+		main_event_no, main_event_title, main_event_image
+		FROM MainEvent
+		WHERE main_event_no = #{main_event_no}
+	</select>
+	
+	<update id="mainUpdate" parameterType="main">
+		UPDATE MainEvent
+		SET main_event_title = #{main_event_title},
+			main_event_image = #{main_event_image}
+		WHERE main_event_no = #{main_event_no}
+		
+	</update>
+	
+	
+	<select id="benerList" resultType="bener">
+		SELECT
+		main_event_bener_image,main_bener_no
+		FROM Mainbener
+	</select>
+	
+	
+	<select id="benerupdateForm" resultType="bener">
+		SELECT
+		main_event_bener_image,main_bener_no
+		FROM Mainbener
+		WHERE
+		main_bener_no = #{main_bener_no}
+	</select>
+	
+	<update id="benerUpdate" parameterType="bener">
+		UPDATE Mainbener
+		SET main_event_bener_image = #{main_event_bener_image}
+		WHERE main_bener_no = #{main_bener_no}
+		
+	</update>
+	
+	
+
+</mapper>

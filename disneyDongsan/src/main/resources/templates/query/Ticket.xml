@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disney.client.dao.TicketDAO">
+		
+	<!-- 티켓 검색 -->
+	<sql id="ticketSearch">
+		<if test="search=='alldayTicket'">
+			<![CDATA[t_category = #{keyword}]]>
+		</if>
+		<if test="search=='afternoonTicket'">
+			<![CDATA[t_category = #{keyword}]]>
+		</if>
+		<if test="search=='packageTicket'">
+			<![CDATA[t_category = #{keyword}]]>
+		</if>
+		
+		<!-- <if test="ticketSearch=='cancelTicket'">
+			<![CDATA[t_state = 'N']]>
+		</if>
+		<if test="ticketSearch=='notcancelTicket'">
+			<![CDATA[t_state = 'Y']]>
+		</if> -->
+	</sql>
+	
+
+	<sql id="cancelSearch">
+		<if test="cancelSearch=='cancelTicket'">
+			<![CDATA[t_state = 'N']]>
+		</if>
+		<if test="cancelSearch=='notcancelTicket'">
+			<![CDATA[t_state = 'Y']]>
+		</if>
+	</sql>
+	<!-- <sql id="dateSearch">
+		<![CDATA[visit_date = #{visitDate}]]>
+	</sql> -->
+	
+	<!-- <sql id="ticketCancelListSearch">
+		<if test="">
+			<![CDATA[t_state='Y']]>
+		</if>
+	</sql> -->
+	<!-- <sql id="ticketSearch">
+		SELECT PAYMENT_ID,visit_date, t_category, t_adult, t_student, t_child, t_multi, t_afternoon, card_company, allday_price, total_price, pay_date, t_member_id, t_state
+		FROM PAYMENT
+		WHERE t_category = #{t_category}
+		ORDER BY PAYMENT_ID
+	</sql> -->
+	
+	<!-- 결제내역 조회 -->
+	<!-- <select id="ticketOrderList" resultType="ticket">
+		SELECT PAYMENT_ID,visit_date, t_category, t_adult, t_student, t_child, t_multi, t_afternoon, card_company, allday_price, total_price, pay_date, t_member_id, t_state
+		FROM PAYMENT
+		ORDER BY PAYMENT_ID
+	</select> -->
+	<select id="ticketOrderList" parameterType="ticket" resultType="ticket">
+		<![CDATA[
+		SELECT rnum, PAYMENT_ID, TO_CHAR(visit_date, 'YYYY-MM-DD') visit_date, t_category, t_adult, t_student, t_child, t_multi, t_afternoon, card_company, allday_price, total_price,  TO_CHAR(pay_date, 'YYYY-MM-DD') pay_date, t_member_id, t_state
+		FROM (SELECT rownum as rnum, PAYMENT_ID, visit_date, t_category, t_adult, t_student, t_child, t_multi, t_afternoon, card_company, allday_price, total_price, pay_date, t_member_id, t_state
+			FROM PAYMENT
+			WHERE ]]>
+			<trim prefix="(" suffix=") AND " prefixOverrides="AND">
+		         <include refid="ticketSearch"></include>
+		         <if test="visitDate != null and visitDate != ''">
+			        <![CDATA[AND visit_date >= #{visitDate} AND visit_date <= #{visitDateEnd}]]>
+			      </if>
+		     </trim>
+		     <trim prefix="(" suffix=") AND " prefixOverrides="AND">
+		         <include refid="cancelSearch"></include>
+		     </trim>
+		<![CDATA[rownum <= #{pageNum} * #{amount}
+		ORDER BY PAYMENT_ID ASC
+	         ) boardlist
+	     where rnum > (#{pageNum} - 1) * #{amount}
+      ]]>
+      
+	</select>
+
+	
+	
+	<!-- 게시판 갯수 -->
+	<!-- <select id="ticketListCnt" parameterType="ticket" resultType="int">
+		select count(*) from payment
+		<trim prefix=" where (" suffix=")" >
+			<include refid="ticketSearch"></include>
+		</trim>
+	</select> -->
+	<select id="ticketListCnt" parameterType="ticket" resultType="int">
+		
+		select count(*) from payment
+		WHERE
+			<trim prefix="(" suffix=") AND " prefixOverrides="AND">
+		         <include refid="ticketSearch"></include>
+		         <if test="visitDate != null and visitDate != ''">
+			        <![CDATA[AND visit_date >= #{visitDate} AND visit_date <= #{visitDateEnd}]]>
+			      </if>
+		     </trim>
+		     <trim prefix="(" suffix=") AND " prefixOverrides="AND">
+		         <include refid="cancelSearch"></include>
+		     </trim>
+		total_price >= 0
+		
+		
+		<!-- <trim prefix=" where (" suffix=")" >
+			<include refid="ticketSearch"></include>
+		</trim> -->
+		
+		<!-- <if test="visitDate != null and visitDate != ''">
+		      <![CDATA[AND visit_date = #{visitDate}]]>
+		    </if> -->
+		<!-- <trim prefix="(" suffix=") AND " prefixOverrides="AND">
+			<include refid="cancelSearch"></include>
+		</trim> -->
+	</select>
+	
+	<!-- 티켓 취소(관리자) -->
+	<update id="ticketCancel" parameterType="ticket">
+		UPDATE PAYMENT 
+		SET t_state = 'N' 
+		WHERE PAYMENT_ID IN
+		<foreach collection="ticketArr" item="ticketArr" open="(" separator="," close=")">
+	      #{ticketArr}
+	   </foreach>
+	</update>
+	
+	<!-- 결제내역 insert -->
+	<insert id="ticketInsert" parameterType="ticket">
+		INSERT INTO PAYMENT(visit_date, t_category, t_adult, t_student, t_child, t_multi, t_afternoon, card_company, allday_price, total_price, pay_date, t_member_id)
+		VALUES(#{visit_date}, #{t_category}, #{t_adult}, #{t_student}, #{t_child}, #{t_multi}, #{t_afternoon}, #{card_company}, #{allday_price}, #{total_price}, SYSDATE, #{t_member_id})
+	</insert>
+	
+	<!-- 취소티켓 조회 -->
+	<!-- <select id="cancelTicketList" parameterType="ticket" resultType="ticket">
+		SELECT PAYMENT_ID, visit_date, t_category, t_adult, t_student, t_child, t_multi, t_afternoon, card_company, allday_price, total_price, pay_date, t_member_id, t_state
+		FROM payment
+		WHERE t_state = 'Y'
+	</select> -->
+
+</mapper>

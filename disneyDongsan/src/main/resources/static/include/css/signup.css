@@ -1,0 +1,70 @@
+.signupContainer{
+	width:700px;
+	margin:70px auto;
+}
+
+h3{
+	margin-bottom: 20px;
+	font-weight: bold;
+}
+
+input{
+	width: 390px;
+	height: 40px;
+	font-size: 14px;
+	border-radius: 5px;
+	border: 1px solid #e9e9e9;
+	padding: 10px;
+	margin-bottom: 3px;
+}
+
+input:focus{
+	outline: 2px solid #3C3C8C;
+}
+
+button{
+	border-radius: 5px;
+	border: 2px solid #3C3C8C;
+    background-color: white;
+    margin-left: 7px;
+    color:black;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px 7px;
+}
+
+#idCheckBtn{
+	margin-top:0px!important;
+}
+
+label{
+	font-weight: bold;
+	font-size: 16px;
+}
+
+input[type="button"]{
+    background-color: #3C3C8C;
+    margin-top: 20px;
+    color:white;
+    font-weight: bold;
+	width: 400px;
+    height: 50px;
+	font-size: 14px;
+	border-radius: 10px;
+}
+
+span{
+	font-size: 13px;
+}
+
+td img{
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+
+#signupInfoSpan{
+	float: right;
+	font-size: 13px;
+	color: red;
+}

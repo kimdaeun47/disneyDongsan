@@ -1,0 +1,164 @@
+@charset "UTF-8";
+
+.ask_color{
+	color:#3C3C8C;
+} 
+
+.qa_btn{
+	width: 100px;
+	height: 40px;
+	background-color: #3C3C8C;
+	border-radius: 5px;
+	color:white;
+	border: 2px solid white;
+}
+
+.qa_btn:hover{
+	width: 100px;
+	height: 40px;
+	background-color: white;
+	border-radius: 5px;
+	color:#3C3C8C;
+	border: 2px solid #3C3C8C;
+}
+
+.contentBtn{
+	display: flex;
+	justify-content: flex-end;
+	margin:2%;
+}
+.qa{
+	margin: 0 0 0 40%;
+	width: 10%;
+	text-align: center;
+}
+.qa_title{
+	text-align: center;
+	color: #3C3C8C;
+	border-bottom: 2px solid #3C3C8C;
+}
+
+
+
+/*디테일 페이지@@@@@@@@@@@@@@@@@@*/
+
+
+.detail_table{
+	border: 5px solid rgb(219, 219, 240);
+	border-bottom: 5px solid #3C3C8C;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+  	border-style: hidden;
+  	box-shadow: 0 0 0 2px #3C3C8C;
+}
+
+.contentTB{
+	border:3px solid #3C3C8C;
+	border-radius: 5px;
+}
+
+.detail_body{
+	border-radius: 10px;
+}
+
+
+.qaTitle{
+	font-weight: bold;
+	text-align: left;
+	background-color: #f6f2f1!important;
+}
+.text{
+	text-align:left;
+	padding-left: 3%!important;
+}
+
+.askck{
+	display: inline-block;
+	border: 1px solid rgb(192, 192, 192);
+	border-radius: 5px;
+	margin:0;
+	font-size: 12px;
+	color:#3C3C8C;
+	font-weight: bold;
+}
+
+
+
+.content_div{
+	border: 2px solid #3C3C8C;
+	border-radius: 10px;
+	margin:1%;
+	padding: 20px;
+}
+
+.qa_date{
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.answer_div{
+	border: 2px solid #3C3C8C;
+	border-radius: 10px;
+	margin:1%;
+	padding: 20px;
+}
+
+.ask{
+	text-align: center;
+	margin:5%;
+}
+
+.asky{
+	margin:1%;
+	text-align: left;
+}
+
+.answer_title{
+	text-align: left;
+	margin:0 0 0 5%;
+	color:#3C3C8C;
+}
+
+.ask_title{
+	text-align: left;
+	margin:0 0 0 3%;
+	color:#3C3C8C;
+}
+
+.qaDeleteBtn{
+	width: 10%;
+	border: 2px solid white;
+	border-radius: 4px;
+	margin: 0 0 3% 0;
+	background-color: #3C3C8C;
+	color: white;
+	
+}
+
+.qaDeleteBtn:hover{
+	width: 10%;
+	border: 2px solid #3C3C8C;
+	border-radius: 4px;
+	margin: 0 0 3% 0;
+	background-color: #3C3C8C;
+	color: white;
+	
+}
+
+.qaListBtn{
+	width: 10%;
+	border: 2px solid white;
+	border-radius: 4px;
+	margin: 0 0 3% 0;
+	background-color: #3C3C8C;
+	color: white;
+}
+
+.qaListBtn:hover{
+	width: 10%;
+	border: 2px solid #3C3C8C;
+	border-radius: 4px;
+	margin: 0 0 3% 0;
+	background-color: #3C3C8C;
+	color: white;
+}

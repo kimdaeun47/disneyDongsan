@@ -1,0 +1,148 @@
+@charset "UTF-8";
+.card{
+	border-radius: 10px!important;
+	border:3px solid #3C3C8C;
+}
+.card:hover{
+	 box-shadow: none;
+}
+.card-body:hover{
+	background-color: white;
+	color:black;
+	box-shadow: none;
+}
+
+.card-body{
+	display: flex;
+}
+
+
+.card-line{
+	border-top: 1px solid rgb(131, 150, 207);
+	margin:0 25px 0 25px;
+}
+.card-line-bottom{
+	border-bottom: 1px solid rgb(131, 150, 207);
+	margin:0 25px 0 25px;
+}
+.img-div{
+	border:1px solid rgb(223, 223, 223);
+	border-radius: 10px!important;
+}
+.title-div{
+	margin:50px 0 0 20px;
+}
+.card-count{
+	font-size: 14px;
+	color: #8f8f8f;
+	margin-top: 0;
+    margin-bottom: 0;
+}
+.card-date{
+	font-size: 14px;
+	color: #3C3C8C;
+	margin-top: 0;
+    margin-bottom: 0;
+}
+.span-state{
+	border-radius: 5px;
+	border: 1px solid rgb(192, 192, 192);
+	font-size: 12px;
+	padding: 2px;
+	
+}
+
+.span-gname{
+	font-size: 25px;
+}
+.card-title{
+	text-decoration: none;
+	cursor: pointer;
+}
+.title-price{
+	font-size: 18px;
+	font-weight: bold;
+	margin:0;
+}
+
+/*버튼*/
+.btnPush:hover {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+a.button {
+  display: block;
+  position: relative;
+  float: left;
+  width: 120px;
+  padding: 0;
+  margin: 10px 20px 10px 0;
+  font-weight: 600;
+  text-align: center;
+  line-height: 50px;
+  color: #FFF;
+  border-radius: 5px;
+  transition: all 0.2s ;
+}
+.btnFloat {
+  background: none;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.btnFloat:before {
+  content: '처음으로';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 50px;
+  border-radius: 5px;
+  transition: all 0.2s ;
+}
+
+
+
+.btnLightBlue.btnFloat:before {
+  background: #3C3C8C;
+}
+
+.btnFloat:before {
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+}
+
+
+
+.btnFloat:hover:before {
+  margin-top: -2px;
+  margin-left: 0px;
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}
+
+
+/*버튼 끝*/
+.top-color{
+	width: 100%;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	font-weight: bold;
+	color: #3C3C8C;
+	font-size: 25px;
+	
+}
+
+
+.ticketCard{
+	background-image: url("/resources/img/mainCon3_bg.jpg");
+	
+}
+.ticketCard:hover{
+	background-image: url("/resources/img/mainCon3_bg.jpg");
+	
+}
+
+

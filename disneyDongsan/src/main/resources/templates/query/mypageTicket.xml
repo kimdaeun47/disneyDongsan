@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disney.client.dao.MypageTicketDao">
+<select id="myTicketList" parameterType="ticket">
+	SELECT
+		payment_id, TO_CHAR(visit_date,'YYYY-MM-DD') visit_date, 
+		t_category, t_afternoon, card_company, allday_price, total_price, 
+		TO_CHAR(pay_date,'YYYY-MM-DD') pay_date, t_member_id,t_state
+	FROM PAYMENT
+	WHERE t_member_id = #{username}
+	ORDER BY payment_id ASC
+</select>
+
+<select id="myTicketDetail" parameterType="ticket">
+	SELECT
+		payment.payment_id, 
+		TO_CHAR(visit_date,'YYYY-MM-DD') visit_date,
+		payment.t_category,
+		payment.t_adult,
+		payment.t_student,
+		payment.t_child,
+		payment.t_multi,
+		payment.t_afternoon,
+		payment.card_company, 
+		payment.allday_price, 
+		payment.total_price, 
+		payment.pay_date, 
+		payment.t_member_id,
+		payment.t_state,
+		member.member_name
+	FROM 
+		PAYMENT payment
+	JOIN
+		MEMBER member ON payment.t_member_id = member.member_id
+	WHERE PAYMENT_ID = #{PAYMENT_ID}
+</select>
+
+<delete id="myTicketDelete" parameterType="ticket">
+	UPDATE PAYMENT SET t_state = 'N'
+	WHERE PAYMENT_ID = #{PAYMENT_ID}
+</delete>
+</mapper>

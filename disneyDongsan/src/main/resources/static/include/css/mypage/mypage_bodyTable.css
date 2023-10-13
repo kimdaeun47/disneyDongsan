@@ -1,0 +1,191 @@
+@charset "UTF-8";
+
+/*리뷰 리스트*/
+.reviewInsert{
+	width: 80%;
+	height: 50px;
+	background-color: white;
+	color: #3C3C8C;
+	font-weight: bold;
+	border: 2px solid #3C3C8C;
+	border-radius: 3px;
+}
+
+.reviewInsert:hover{
+	background-color: #3C3C8C;
+	color:white;
+}
+
+
+/*리뷰 작성 완료 리스트*/
+.reviewUpdate{
+	width: 80%;
+	height: 50px;
+	background-color: white;
+	color: #3C3C8C;
+	font-weight: bold;
+	border: 2px solid #3C3C8C;
+	border-radius: 3px;
+	margin:0 0 2px 0;
+}
+
+.reviewUpdate:hover{
+	background-color: #3C3C8C;
+	color:white;
+}
+
+
+.reviewDelete{
+	width: 80%;
+	height: 50px;
+	background-color: white;
+	color: #3C3C8C;
+	font-weight: bold;
+	border: 2px solid #3C3C8C;
+	border-radius: 3px;
+	margin:2px 0 0 0;
+}
+
+.reviewDelete:hover{
+	background-color: #3C3C8C;
+	color:white;
+}
+
+
+/*후기 등록 페이지*/
+.card{
+	border:none;
+	width: 100%;
+	margin: 0 0 0 15%;
+}
+.card:hover{
+	box-shadow: none;
+	
+}
+.card-body{
+	border: 2px solid #3C3C8C;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	padding: 0;
+	width: 60%;
+	
+}
+.card-body:hover{
+	background-color: white;
+	color:black;
+}
+
+
+.goods_name{
+	width: 100%;
+	height: 50%;
+	padding: 10px;
+	background-color: #3C3C8C;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	color:white;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.review_div{
+	width: 100%;
+	height: 20%;
+	padding: 10px;
+	color:#3C3C8C;
+	border-top: 2px solid #3C3C8C;
+	border-bottom: 2px solid #3C3C8C;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+
+
+.goods_img_div{
+	margin:3%;
+}
+
+.goods_img{
+	width: 100px!important;
+	border: 1px solid gainsboro;
+	height: 100px;
+}
+
+.form-control{
+	 resize: none;
+	 border: none;
+	 height:100%;
+	 
+}
+
+.review{
+	width: 50%;
+}
+
+.img_file{
+	border-top: 1px solid #3C3C8C;
+	padding: 10px;
+}
+.img{
+	color:#3C3C8C;
+	border-right: 1px solid #3C3C8C;
+}
+
+.contentBtn{
+	margin: 5% 0 0 30%;
+}
+
+.Btn{
+	width: 14%;
+	padding: 1%;
+	border: 1px solid #3C3C8C;
+	border-radius: 10px;
+	background-color: #3C3C8C;
+	color:white;
+	font-weight: bold;
+	font-size: large;
+}
+
+/*후기 수정 페이지*/
+
+.re_image{
+	width:80%;
+}
+
+.re_image_div{
+	margin: 5% 0 5% 15%;
+}
+
+.re_img_title{
+	padding: 10px;
+	border-bottom: 2px solid #3C3C8C;
+	border-top: 2px solid #3C3C8C;
+	font-size:20px;
+	color: white;
+    font-weight: bold;
+    background-color: #3C3C8C
+}
+
+.middle_menu{
+	border-bottom: 2px solid #3C3C8C;
+	padding-top: 10px;
+}
+
+.top{
+	border-bottom: 2px solid #3C3C8C;
+	margin-bottom:30px;
+}
+.exction{
+	width: 100%;
+	color:#3C3C8C;
+	padding: 10px;
+}
+
+.goods_div{
+	display: inline-flex;
+	width: 100%;
+}
+
+.goods_price{
+	margin-top:7%;
+}

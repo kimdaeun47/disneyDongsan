@@ -1,0 +1,28 @@
+
+.col-3{
+	width: 30%;
+}
+.mypage_side{
+	flex: 1;
+}
+
+.mypage_div{
+	flex: auto;
+	width: 80%;
+    padding: 3%;
+}
+
+
+.mypage-body{
+	display: flex;
+	
+}
+
+.active{
+	background-color: #28288c !important;
+	color:white;
+}
+
+footer{
+	padding: 0 30px;
+}

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disney.client.dao.NoticeDao">
+	<!-- <select id="noticeList" resultType="notice">
+		SELECT n_num, n_title, n_content, to_char(n_date, 'YYYY-MM-DD') as n_date
+		FROM notice
+		ORDER BY n_num desc
+	</select> -->
+
+	<sql id="noticeSearch">
+		<if test="search=='n_title'">
+			<![CDATA[n_title LIKE '%' || #{keyword} || '%']]>
+		</if>
+		<if test="search=='n_content'">
+			<![CDATA[n_content LIKE '%' || #{keyword} || '%']]>
+		</if>
+	</sql>
+		
+	
+	
+	<select id="noticeList" parameterType="notice" resultType="notice">
+		<![CDATA[
+		select
+	    n_num, n_title, to_char(n_date, 'YYYY-MM-DD') as n_date
+		from(
+        select /*+ INDEX_DESC(notice notice_pk) */
+            rownum as rnum, n_num, n_title, n_date
+        from notice
+        where]]>
+        
+        <trim prefix="(" suffix=") AND " prefixOverrides="AND">
+        	<include refid="noticeSearch"></include>
+        </trim>
+       <![CDATA[rownum <= #{pageNum} * #{amount}
+       		) noticelist
+       		WHERE rnum > (#{pageNum}-1) * #{amount}
+       ]]>
+	</select>
+	
+	
+	<!-- 전체 레코드 수 조회  -->
+	<select id="noticeListCnt" parameterType="notice" resultType="int">
+		SELECT count(*) FROM notice
+		<trim prefix=" where (" suffix=")">
+			<include refid="noticeSearch"></include>
+		</trim>
+	</select> 
+	
+	<!-- 상세페이지 -->
+	<select id="noticeDetail" resultType="notice">
+		SELECT n_num, n_title, n_content, to_char(n_date, 'YYYY-MM-DD') as n_date
+		FROM notice
+		WHERE n_num = #{n_num}
+	</select>
+	
+	<!-- 이전글 다음글 -->
+	<select id="prevNext" parameterType="Integer" resultType="notice">
+	<![CDATA[
+		select * from (select n_num, n_title,
+		LAG(n_num, 1,0) OVER(ORDER BY n_num ) prevNum,
+		LAG(n_title, 1, '이전글이 없습니다') OVER(ORDER BY n_num ) prevTitle,
+
+		lead(n_num,1,0) over (order by n_num )nextNum,
+		lead(n_title,1,'다음글이 없습니다') over (order by n_num ) nextTitle
+		from notice )where n_num=#{n_num} order by n_num
+	 ]]>
+	</select>
+	
+	<!-- 공지 입력 -->
+	<insert id="noticeInsert" parameterType="notice">
+		INSERT INTO notice(n_num, n_title, n_content )
+		VALUES(notice_seq.nextval, #{n_title}, #{n_content})
+	</insert>
+	
+	<!-- 공지 수정 -->
+	<update id="noticeUpdate" parameterType="notice">
+		update notice
+		set n_title = #{n_title}, n_content = #{n_content}
+		where n_num = #{n_num}
+	</update>
+	
+	<!-- 공지 삭제 -->
+	<delete id="noticeDelete" parameterType="notice">
+		delete from notice
+		where n_num = #{n_num}
+	</delete>
+
+
+
+	<!--체크 박스 삭제 -->
+    <select id="adminSearchNoticeNo" parameterType="string" resultType="notice" >
+        SELECT * FROM notice
+        WHERE n_num = #{noticeNo}
+    </select>
+   
+    <delete id="adminAllNoticeDelete" parameterType="notice">
+        DELETE FROM notice
+        WHERE n_num IN
+     	<foreach collection="checkNumber" item="checkNumber" open="(" separator="," close=")">
+         	#{checkNumber}
+      	</foreach>
+    </delete>
+	
+	
+</mapper>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+  
+<tiles-definitions>
+	
+	<definition name="intro" template="/WEB-INF/views/template/mainLayout.jsp">
+	<put-attribute name="title" value="Disney 동산"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+	</definition>
+	
+	<definition name="content" template="/WEB-INF/views/template/contentLayout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+	</definition>
+	
+	<!--  jsp를 각각 불러오지 않고 한번에 불러오기 위한 문법-->
+	<!-- <definition name="client/board/*" extends="content">
+		<put-attribute name="title" value="게시판"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/board/{1}.jsp"></put-attribute>
+	</definition> -->
+	
+	<definition name="client/ticket/*" extends="content">
+		<put-attribute name="title" value="티켓예매"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/ticket/{1}.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="client/goods/*" extends="content">
+		<put-attribute name="title" value="disney 굿즈상품"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/goods/{1}.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="client/facilityInfo/*" extends="content">
+		<put-attribute name="title" value="disney동산 이용시간"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/facilityInfo/{1}.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="client/route/*" extends="content">
+		<put-attribute name="title" value="disney동산 시설안내"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/route/{1}.jsp"></put-attribute>
+	</definition>
+
+	<definition name="client/notice/*" extends="content">
+		<put-attribute name="title" value="disney동산"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/notice/{1}.jsp"></put-attribute>
+	</definition>
+
+	<definition name="client/event/*" extends="content">
+		<put-attribute name="title" value="이벤트"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/event/{1}.jsp"></put-attribute>
+	</definition>
+
+	<definition name="client/member/login/*" extends="content">
+		<put-attribute name="title" value="disney동산"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/member/login/{1}.jsp"></put-attribute>
+	</definition>
+
+	<definition name="client/member/signup/*" extends="content">
+		<put-attribute name="title" value="disney동산"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/member/signup/{1}.jsp"></put-attribute>
+	</definition>
+
+	<definition name="client/member/withdrawal/*" extends="content">
+		<put-attribute name="title" value="disney동산"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/member/withdrawal/{1}.jsp"></put-attribute>
+	</definition>
+</tiles-definitions>

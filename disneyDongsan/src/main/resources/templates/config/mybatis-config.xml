@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.disney.vo.MemberVO" alias="member"/>
+		<typeAlias type="com.disney.vo.AdminVO" alias="admin"/>
+		
+		<typeAlias type="com.disney.vo.TicketVO" alias="ticket"/>
+		<typeAlias type="com.disney.vo.CardVO" alias="card"/>
+		
+		<typeAlias type="com.disney.vo.GoodsVO" alias="goods"/>
+		<typeAlias type="com.disney.vo.BasketVO" alias="basket"/>
+		<typeAlias type="com.disney.vo.OrderVO" alias="order"/>
+		<typeAlias type="com.disney.vo.OrderPayVO" alias="orderPay"/>
+		<typeAlias type="com.disney.vo.OrderDetailVO" alias="orderDetail"/>
+		<typeAlias type="com.disney.vo.OrderDetailPayVO" alias="orderDetailPay"/>
+		
+		<typeAlias type="com.disney.vo.RideVO" alias="ride"/>
+		<typeAlias type="com.disney.vo.RestaurantVO" alias="restaurant"/>
+		<typeAlias type="com.disney.vo.OperatingHoursVO" alias="hours"/>
+		<typeAlias type="com.disney.vo.RouteVO" alias="route"/>
+		<typeAlias type="com.disney.vo.RouteReplyVO" alias="routeReply"/>
+		
+		<typeAlias type="com.disney.vo.QuestionVO" alias="question"/>
+		<typeAlias type="com.disney.vo.GoodsReviewVO" alias="goodsReview"/>
+		<typeAlias type="com.disney.vo.MainVO" alias="main"/>
+		<typeAlias type="com.disney.vo.MainBenerVO" alias="bener"/>
+		
+		<typeAlias type="com.disney.vo.NoticeVO" alias="notice"/>
+		<typeAlias type="com.disney.vo.EventVO" alias="event"/>
+	</typeAliases>
+	
+</configuration>

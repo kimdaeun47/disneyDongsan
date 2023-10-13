@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disney.client.dao.QuestionDao">
+	<select id="qaList" resultType="question" >
+	<![CDATA[
+	SELECT 
+	qa_no, title, qa_content, qa_date, askyn, ask, ask_date, member_id
+	FROM(
+			SELECT rownum as rnum, qa_no, title, qa_content, qa_date, askyn, ask, ask_date, member_id
+			FROM QA
+			WHERE rownum <= #{pageNum} * #{amount}
+			 ORDER BY CASE WHEN askyn LIKE 'n%' THEN 0 ELSE 1 END ASC
+                ) qaList
+            WHERE rnum > (#{pageNum}-1)* #{amount}
+        ]]>
+	
+	</select>
+	
+	<select id="answerListCnt" parameterType="question" resultType="int">
+		SELECT count(*) FROM QA
+		
+	</select>
+	
+	
+
+	<!-- 파라미터 타입 ==> vo 별칭 -->
+	<insert id="qaInsert" parameterType="question" >
+	INSERT INTO QA(qa_no, title, qa_content, member_id) 
+	VALUES(dongsan_qa_seq.nextval, #{title}, #{qa_content}, 'user01')
+	</insert>
+	
+	<select id="qaDetail" parameterType="question" resultType="question">
+	SELECT qa_no, title, qa_content, member_id, ask, askyn, qa_date
+	FROM QA
+	WHERE qa_no = #{qa_no}
+	</select>
+	
+	<delete id="qaDelete" parameterType="question">
+		DELETE FROM QA WHERE qa_no = #{qa_no}
+	</delete>
+	
+	<!-- 관리자 -->
+	<update id="anUpdate" parameterType="question">
+		UPDATE QA
+		SET ask = #{ask}
+		<if test = "ask != ''">
+			,askyn = 'Y'
+			,ask_date = sysdate
+		</if>
+		WHERE qa_no = #{qa_no}
+	</update>
+	
+	<delete id="anDelete" parameterType="question">
+	DELETE FROM QA
+	WHERE qa_no IN
+	<foreach collection="valueArr" item="valueArr" open="(" separator="," close=")">
+		#{valueArr}
+	</foreach>
+		
+	</delete>
+
+</mapper>

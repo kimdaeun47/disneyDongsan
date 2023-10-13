@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+  
+<tiles-definitions>
+
+	<definition name ="mypageMain" template="/WEB-INF/views/template/mypageMainLayout.jsp">
+		<put-attribute name="title" value="Disney동산 마이페이지"/>
+		<put-attribute name="mypage_header" value="/WEB-INF/views/template/mypageHeader.jsp"/>
+		<put-attribute name="mypage_sidebar" value="/WEB-INF/views/template/mypageSidebar.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+	</definition>
+	
+	
+	
+	<definition name="mypageContent" template="/WEB-INF/views/template/mypageContentLayout.jsp">
+		<put-attribute name="title" value="Disney동산 마이페이지"/>
+		<put-attribute name="mypage_header" value="/WEB-INF/views/template/mypageHeader.jsp"/>
+		<put-attribute name="mypage_sidebar" value="/WEB-INF/views/template/mypageSidebar.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+	</definition>
+	
+	<!--  jsp를 각각 불러오지 않고 한번에 불러오기 위한 문법-->
+	
+	<!-- 개인정보 수정 -->
+	<definition name="client/mypage/updateinfo/*" extends="mypageContent">
+		<put-attribute name="title" value="개인정보 수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/mypage/updateinfo/{1}.jsp"></put-attribute>
+	</definition> 
+	
+	
+	<!-- 티켓예매 내역 -->
+	<definition name="client/mypage/ticket/*" extends="mypageContent">
+		<put-attribute name="title" value="티켓예매 내역"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/mypage/ticket/{1}.jsp"></put-attribute>
+	</definition> 
+	
+	 
+	<!-- 굿즈 내역 -->
+	<definition name="client/mypage/goods/*" extends="mypageContent">
+		<put-attribute name="title" value="굿즈내역"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/mypage/goods/{1}.jsp"></put-attribute>
+	</definition> 
+	
+	
+	<!-- 리뷰 -->
+	<definition name="client/mypage/review/*" extends="mypageContent">
+		<put-attribute name="title" value="리뷰"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/mypage/review/{1}.jsp"></put-attribute>
+	</definition>
+	
+	
+	
+	<!-- 1:1 문의 -->
+	<definition name="client/mypage/qa/*" extends="mypageContent">
+		<put-attribute name="title" value="1:1문의"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/mypage/qa/{1}.jsp"></put-attribute>
+	</definition> 
+	
+	
+	<!-- 회원 탈퇴 -->
+	<definition name="client/mypage/withdrawal/*" extends="mypageContent">
+		<put-attribute name="title" value="1:1문의"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/mypage/withdrawal/{1}.jsp"></put-attribute>
+	</definition> 
+	
+</tiles-definitions>

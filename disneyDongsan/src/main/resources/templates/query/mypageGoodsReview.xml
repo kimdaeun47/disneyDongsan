@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disney.client.dao.MypageGoodsReviewDao">
+
+	<select id="myGoodsReviewList" resultType="goodsReview">
+		SELECT
+		gdetail.g_order_detail_id,
+		gorder.g_order_date,
+		gorder.g_order_state,
+		gorder.member_id,
+		goods.g_name,
+		goods.g_image,
+		goods.g_id,
+		goods.g_price,
+		greview.content_check,
+		greview.re_image
+		
+		FROM
+		g_order_detail gdetail
+		full JOIN
+		goods goods ON
+		gdetail.g_id = goods.g_id
+		full JOIN
+		g_order gorder ON 
+		gdetail.g_order_id = gorder.g_order_id
+		full JOIN
+		g_review greview ON
+		gdetail.g_order_detail_id = greview.detail_num
+		WHERE member_id = #{memberId} AND g_order_state = '배송완료' AND content_check IS NULL
+		ORDER BY g_order_date DESC
+	</select>
+	
+	<select id="ReviewCompleteList" resultType="goodsReview">
+		SELECT
+		gdetail.g_order_detail_id,
+		gorder.g_order_date,
+		gorder.g_order_state,
+		gorder.member_id,
+		goods.g_name,
+		goods.g_image,
+		goods.g_id,
+		goods.g_price,
+		greview.content_check,
+		greview.re_image
+		
+		FROM
+		g_order_detail gdetail
+		full JOIN
+		goods goods ON
+		gdetail.g_id = goods.g_id
+		full JOIN
+		g_order gorder ON 
+		gdetail.g_order_id = gorder.g_order_id
+		full JOIN
+		g_review greview ON
+		gdetail.g_order_detail_id = greview.detail_num
+		WHERE member_id = #{memberId} AND content_check = '작성완료'
+		ORDER BY g_order_date DESC
+	</select>
+	
+	  <insert id="reviewInsert" parameterType="goodsReview">
+		INSERT INTO g_review (re_id, re_content, re_image, r_member_id, detail_num,content_check)
+		VALUES(g_review_seq.nextval, #{re_content},#{re_image},#{r_member_id},#{detail_num},'작성완료')
+	  </insert>
+	  
+	  <select id="userReviewUpdateForm" resultType="goodsReview">
+	  	
+	  	SELECT
+		goods.g_name,
+		goods.g_image,
+		greview.re_id,
+	  	greview.re_content,
+	  	greview.re_image,
+	  	greview.detail_num,
+	  	gdetail.g_price
+		FROM
+		g_order_detail gdetail
+		full JOIN
+		goods goods ON
+		gdetail.g_id = goods.g_id
+		full JOIN
+		g_review greview ON
+		gdetail.g_order_detail_id = greview.detail_num
+		WHERE detail_num = #{detail_num}
+	  </select>
+	  
+	  <update id="userReviewUpdate" parameterType="goodsReview">
+	  	UPDATE g_review
+	  	SET re_content = #{re_content}
+	  	<if test= "re_image != ''">
+	  		,re_image = #{re_image}
+	  	</if>
+	  	WHERE detail_num = #{detail_num}
+	  </update>
+	  
+	  <delete id="userReviewDelete" parameterType="goodsReview">
+	  	DELETE FROM g_review
+	  	WHERE detail_num = #{detail_num}
+	  
+	  </delete>
+	  
+	  <!-- 댓글 전체 조회(해당 게시물번호에 대해) -->
+		<select id="goodsReviewList" parameterType="goodsReview" resultType="goodsReview">
+			<!-- select re_id, re_content, re_date, re_image, content_check, r_member_id, detail_num
+						
+			from g_review
+			where g_id = #{g_id} -->
+			SELECT
+			goods.g_name,
+			greview.re_id,
+		  	greview.re_content,
+		  	greview.re_image,
+		  	greview.detail_num,
+		  	greview.r_member_id,
+            greview.re_date,
+		  	goods.g_id
+			FROM
+			g_order_detail gdetail
+			full JOIN
+			goods goods ON
+			gdetail.g_id = goods.g_id
+			full JOIN
+			g_review greview ON
+			gdetail.g_order_detail_id = greview.detail_num
+			WHERE goods.g_id = #{g_id}
+			order by re_id desc
+		</select>
+	  
+
+</mapper>

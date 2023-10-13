@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disney.client.dao.MypageGoodsDao">
+
+	<select id="myGoodsList" resultType="goods">
+		SELECT
+		g_order_id, member_id, g_order_date, g_order_state
+		FROM
+		g_order
+		WHERE member_id = #{memberId}
+		ORDER BY g_order_date DESC
+	</select>
+	
+	<select id="userGoodsDetail" resultType="goods">
+		SELECT
+    gdetail.g_order_detail_id,
+    gdetail.g_order_id,
+    gdetail.g_id,
+    gdetail.g_count,
+    gdetail.g_price,
+    (gdetail.g_count * gdetail.g_price) AS total_price,
+    gorder.g_order_date,
+    gorder.g_order_state,
+    gorder.member_id,
+    gorder.member_addr1,
+    gorder.member_addr2,
+    gorder.member_addr3,
+    gorder.member_name,
+    goods.g_name,
+    goods.g_image,
+    goods.g_delivery
+FROM
+    g_order_detail gdetail
+JOIN
+    goods goods ON gdetail.g_id = goods.g_id
+JOIN
+    g_order gorder ON gdetail.g_order_id = gorder.g_order_id
+WHERE
+    gorder.g_order_id = #{g_order_id}
+	</select> 
+
+	<update id="stateUpdate" parameterType="goods">
+		<foreach collection="goodsArr" item="goodsArr" separator=";">
+			UPDATE g_order 
+			SET g_order_state = '배송취소요청'
+			WHERE g_order_id = g_order_id
+			AND g_order_id = #{goodsArr}
+		</foreach>
+	</update>
+</mapper>

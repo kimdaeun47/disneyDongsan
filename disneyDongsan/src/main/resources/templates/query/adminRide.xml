@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disney.admin.dao.AdminRideDao">
+	<resultMap type="ride" id="adminRideResultSet">
+		<id column="ride_no" property="rideNo"></id>
+		<result column="ride_title" property="rideTitle"></result>
+		<result column="ride_sub_title" property="rideSubTitle"></result>
+		<result column="ride_content" property="rideContent"></result>
+		<result column="ride_image" property="rideImage"></result>
+	</resultMap>
+	
+	<sql id="adminRideSearch">
+		<if test="search=='rideTitle'">
+			<![CDATA[ ride_title LIKE '%' || #{keyword} || '%']]>
+		</if>
+	</sql>
+
+	<select id="adminRideList" parameterType="ride" resultType="ride" resultMap="adminRideResultSet">
+		<![CDATA[
+		select rnum, ride_no, ride_title, ride_sub_title, ride_content, ride_image 
+		from (
+    	select /*+index_desc(ride ride_pk)*/
+        	rownum as rnum, ride_no, ride_title, ride_sub_title, ride_content, ride_image 
+    	from ride
+		where]]>
+		<trim prefix="(" suffix=") AND " prefixOverrides="AND">
+			<include refid="adminRideSearch"></include>
+		</trim>
+		<![CDATA[rownum <= #{pageNum} * #{amount}
+			)ridelist
+		where rnum > (#{pageNum}-1) * #{amount}
+		]]>
+		ORDER by ride_no desc
+	</select>
+	
+	<!-- 전체 레코드 수 조회 -->
+	<select id="adminRideListCnt" parameterType="ride" resultType="int">
+		select count(*) from ride
+		<trim prefix=" where (" suffix=")" >
+			<include refid="adminRideSearch"></include>
+		</trim>
+	</select>
+
+	<!-- 게시물 기본 조회 -->
+<!-- 	<select id="rideList" parameterType="ride" resultMap="rideResultSet" >
+		select ride_no, ride_title, ride_sub_title, ride_content, ride_image
+		from ride 
+		order by ride_no ASC 
+	</select> -->
+
+	<!-- 게시물 등록 -->
+	<insert id="adminRideInsert" parameterType="ride">	
+		INSERT INTO ride(ride_no, ride_title, ride_sub_title, ride_content, ride_image)
+		VALUES(ride_seq.nextval, #{rideTitle}, #{rideSubTitle}, #{rideContent}, #{rideImage})
+	</insert>
+	
+	<select id="adminRideUpdateForm" parameterType="ride" resultType="ride" resultMap="adminRideResultSet">
+		SELECT ride_no, ride_title, ride_sub_title, ride_content, ride_image
+		FROM ride 
+		where ride_no = #{rideNo}
+	</select>
+	
+	<update id = "adminRideUpdate" parameterType="ride">
+		update ride 
+		set ride_sub_title = #{rideSubTitle}, ride_content = #{rideContent} 
+		<if test = "rideImage != ''">
+			,ride_image = #{rideImage} 
+		</if>
+		where ride_no = #{rideNo}
+	</update>
+	
+	<!-- 게시물 삭제 -->
+ 	<delete id = "adminRideDelete" parameterType="ride">
+		delete from ride where ride_no = #{rideNo}
+	</delete> 
+
+</mapper>

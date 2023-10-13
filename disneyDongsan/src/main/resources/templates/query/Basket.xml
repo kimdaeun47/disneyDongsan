@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disney.client.dao.BasketDAO">
+
+	<!-- 장바구니 추가 -->
+	<insert id="addBasket">
+		insert into basket(member_id, g_id, g_count)
+		values(#{member_id}, #{g_id}, #{g_count})
+	</insert>
+	
+	<!-- 장바구니 삭제 -->
+	<delete id="deleteBasket">
+		delete from basket where basket_id = #{basket_id}
+	</delete>
+	
+	<!-- 장바구니 수량 수정 -->
+	<update id="modifyCount">
+		update basket set g_count = #{g_count} where basket_id = #{basket_id}
+	</update>
+	
+	<!-- 장바구니 목록 -->
+	<select id="getBasketList" resultType="basket">
+	
+		select a.basket_id, a.member_id, a.g_id, a.g_count, b.g_name, b.g_price, b.g_image
+		from basket a left outer join goods b on a.g_id = b.g_id
+		where member_id = #{member_id}
+		
+	</select>
+	
+	<select id="checkBasket" resultType="basket">
+		select * from basket
+		where member_id = #{member_id} and g_id = #{g_id}
+	</select>
+	
+	<delete id="deleteOrderBasket">
+	
+		delete from basket where member_id = #{member_id} and g_id = #{g_id}
+	
+	</delete>
+
+</mapper>

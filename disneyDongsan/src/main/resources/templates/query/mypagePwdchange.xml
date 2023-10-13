@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disney.client.dao.MypageUpdateDao">
+	
+	<select id="pwdChk" parameterType="member" resultType="int">
+		SELECT NVL((
+				SELECT 1 from MEMBER
+				WHERE member_id = #{memberId} and member_passwd = #{memberPasswd})
+				,0)as state
+		FROM dual
+	</select>
+	
+	<update id="changePw" parameterType="member">
+		UPDATE MEMBER
+		SET member_passwd = #{new_password}
+		WHERE member_id = #{memberId}
+	</update>
+</mapper>

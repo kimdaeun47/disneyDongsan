@@ -1,0 +1,21 @@
+@charset "UTF-8";
+			.contentTB{margin: auto; padding:50px 30px 30px 30px;}
+			.contentBtn{padding-bottom:10px;}
+			.text-center{text-align: center;}
+			.text-left{text-align: left;}
+			.text-right{text-align: right;}
+			.sty_btn{
+			   display: inline-block;
+			   height: 32px;
+			   width: 70px;
+			   font-weight: 600;
+			   font-size: 15px;
+			   line-height: 20px;
+			   margin-left: 10px;
+			   background-color: #c3daf7;  
+			}
+			.sty_btn:hover{
+			  border: 2px solid #c3daf7;
+			  background-color: white;
+			}
+			.card-body{padding: 50px;}

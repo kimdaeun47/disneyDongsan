@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disney.admin.dao.AdminOperatingHoursDao">
+	
+	<resultMap type="hours" id="AdminHoursResultSet">
+		<id column="hours_date" property="hoursDate"></id>
+		<result column="hours_time" property="hoursTime"></result>
+	</resultMap>
+
+	<!-- 게시물 기본 조회 -->
+	<select id="adminHoursList" resultType="hours" resultMap="AdminHoursResultSet" parameterType="String">
+		SELECT hours_date, hours_time
+		FROM operating_hours
+		WHERE hours_date like #{value}||'%' 
+	</select>
+	
+ 	<update id="adminHoursUpdate"  parameterType="hours" >
+		update operating_hours set hours_time = #{hoursTime}
+		WHERE hours_date = #{hoursDate}
+	</update>
+	
+<!--  	<update id="adminHoursUpdate" parameterType="java.util.List">
+	    <foreach collection="list" item="item" index="index" separator=";" open="DECLARE BEGIN" close="; END;"> 
+	        update operating_hours set hours_time = #{item.hoursTime}
+	        WHERE hours_date = #{item.hoursDate}
+	    </foreach>
+	</update> --> 
+
+</mapper>

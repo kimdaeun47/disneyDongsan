@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disney.client.dao.MemberDAO">
+	
+	<!-- 로그인 처리 -->
+	<select id="login" parameterType="member" resultType="member">
+		SELECT member_no memberNo, member_id memberId, member_passwd memberPasswd, member_name memberName, member_phone memberPhone, member_email memberEmail, member_addr1 memberAddr1, member_addr2 memberAddr2, member_addr3 memberAddr3, member_regdate memberRegdate, member_state memberState
+		FROM member
+		WHERE member_id = #{memberId} AND member_passwd = #{memberPasswd}
+	</select>
+	
+	<!-- 아이디 찾기 전 회원 존재 여부 확인 -->
+	<select id="findIdMemberExists" parameterType="member" resultType="int">
+		SELECT NVL((SELECT 1 FROM member WHERE member_name=#{memberName} AND member_phone=#{memberPhone}), 0) AS result 
+		FROM dual
+	</select>
+	
+	<!-- 아이디 찾기 처리 -->
+	<select id="findId" parameterType="member" resultType="member">
+		SELECT REGEXP_REPLACE(member_id, '.', '*', 5) as memberId, member_regdate memberRegdate
+		FROM member
+		WHERE member_name = #{memberName} AND member_phone = #{memberPhone}
+	</select>
+	
+	<!-- 비밀번호 찾기 전 회원 존재 여부 확인 -->
+	<select id="findPwdMemberExists" parameterType="member" resultType="int">
+		SELECT NVL((SELECT 1 FROM member WHERE member_id=#{memberId} AND member_email=#{memberEmail}), 0) AS result 
+		FROM dual
+	</select>
+	
+	<!-- 임시 비밀번호로 변경 -->
+	<update id="updatePwd" parameterType="member">
+		UPDATE member
+		SET member_passwd = #{memberPasswd}
+		WHERE member_id = #{memberId} 
+	</update>
+	
+	<!-- 회원가입 : 아이디 중복 확인 -->
+	<select id="idCheck" parameterType="member" resultType="int">
+		SELECT NVL((SELECT 1 FROM member WHERE member_id=#{memberId}), 0) AS result
+		FROM dual
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="signup" parameterType="member">
+		INSERT INTO member(member_no, member_id, member_passwd, member_name, member_phone, member_email, member_addr1, member_addr2, member_addr3, member_regdate, member_state)
+		VALUES(member_seq.nextval, #{memberId}, #{memberPasswd}, #{memberName}, #{memberPhone}, #{memberEmail}, #{memberAddr1}, #{memberAddr2}, #{memberAddr3}, SYSDATE, 'E')
+	</insert>
+	
+	<!-- 탈퇴 회원 상태 변경 -->
+	<update id="withdrawal" parameterType="member">
+		UPDATE member
+		SET member_state = 'NE'
+		WHERE member_id = #{memberId}
+	</update>
+	
+	<!-- 마이페이지 : 전화번호 수정 -->
+	<update id="updateInfoPhone" parameterType="member">
+		UPDATE member
+		SET member_phone = #{memberPhone}
+		WHERE member_id = #{memberId}
+	</update>
+	
+	<!-- 마이페이지 : 이메일 수정 -->
+	<update id="updateInfoEmail" parameterType="member">
+		UPDATE member
+		SET member_email = #{memberEmail}
+		WHERE member_id = #{memberId}
+	</update>
+	
+	<!-- 마이페이지 : 주소 수정 -->
+	<update id="updateInfoAddr" parameterType="member">
+		UPDATE member
+		SET member_addr1 = #{memberAddr1}, member_addr2 = #{memberAddr2}, member_addr3 = #{memberAddr3}
+		WHERE member_id = #{memberId}
+	</update>
+	
+	<!-- 회원 정보 조회 -->
+	<select id="memberDetail" parameterType="member" resultType="member">
+		SELECT member_no memberNo, member_id memberId, member_passwd memberPasswd, member_name memberName, member_phone memberPhone, member_email memberEmail, member_addr1 memberAddr1, member_addr2 memberAddr2, member_addr3 memberAddr3, member_regdate memberRegdate, member_state memberState
+		FROM member
+		WHERE member_id = #{memberId}
+	</select>
+</mapper>
